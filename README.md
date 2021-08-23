@@ -1,0 +1,2 @@
+# prelocated
+Python environment RELOCATED
