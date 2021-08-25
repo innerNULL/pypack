@@ -1,0 +1,14 @@
+# file: Dockerfile
+
+FROM {__IMAGE__} 
+MAINTAINER "{__MAINTAINER__}"
+
+RUN mkdir /workspace
+WORKDIR /workspace
+
+COPY ./init.sh /workspace
+COPY ./build.sh /workspace
+
+RUN bash ./init.sh
+#RUN bash ./build.sh
+
