@@ -4,8 +4,10 @@
 set -x
 
 
-PYTHON_BIN=$1
-MINICONDA_URL=$2
+#PYTHON_BIN=$1
+#MINICONDA_URL=$2
+PY_ENV=$1
+PY_VERSION=$2
 
 
 function install_python() {
@@ -25,11 +27,14 @@ function install_miniconda() {
   conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
   conda config --add channels defaults
   conda install -c conda-forge conda-pack
-
-  conda create -n pyenv python=3.9
-  conda activate pyenv
-  rm -rf ./pyenv.tar.gz
-  conda pack -n pyenv -o ./pyenv.tar.gz
+  
+  #conda install --file ./requirements.txt
+  conda create -n ${PY_ENV} --file ./requirements.txt python=${PY_VERSION}
+  conda init bash
+  conda activate ${PY_ENV}
+  #python -m pip install -r ./requirements.txt
+  rm -rf ./${PY_ENV}.tar.gz
+  conda pack -n ${PY_ENV} -o ./${PY_ENV}.tar.gz
 }
 
 

@@ -1,0 +1,16 @@
+{
+    "miniconda_url": "https://repo.anaconda.com/miniconda/Miniconda3-py39_4.10.3-Linux-x86_64.sh",
+    "docker": {
+        "base_img": "centos:centos7.3.1611",
+        "build_img": "centos_py39", 
+        "container": "prelocatable_container"
+    },
+    "python": {
+        "version": "3.9", 
+        "env_name": "pyenv", 
+        "dep": "./files/requirements.txt"
+    }, 
+    "build": {
+        "path": "./_build"
+    }
+}
