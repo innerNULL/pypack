@@ -28,11 +28,12 @@ function install_miniconda() {
   conda config --add channels defaults
   conda install -c conda-forge conda-pack
   
-  #conda install --file ./requirements.txt
-  conda create -n ${PY_ENV} --file ./requirements.txt python=${PY_VERSION}
+  #conda create -n ${PY_ENV} --file ./requirements.txt python=${PY_VERSION}
+  conda create -n ${PY_ENV} python=${PY_VERSION}
   conda init bash
-  conda activate ${PY_ENV}
-  #python -m pip install -r ./requirements.txt
+  #conda activate ${PY_ENV}
+  source activate ${PY_ENV}
+  python -m pip install -r ./requirements.txt -i https://pypi.doubanio.com/simple
   rm -rf ./${PY_ENV}.tar.gz
   conda pack -n ${PY_ENV} -o ./${PY_ENV}.tar.gz
 }

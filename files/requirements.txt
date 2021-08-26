@@ -1,2 +1,3 @@
 numpy==1.21.1
-multipledispatch=0.6.0
+multipledispatch==0.6.0
+#egg=brabeion-master
