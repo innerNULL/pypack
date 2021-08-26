@@ -33,7 +33,7 @@ function install_miniconda() {
   conda init bash
   #conda activate ${PY_ENV}
   source activate ${PY_ENV}
-  python -m pip install -r ./requirements.txt -i https://pypi.doubanio.com/simple
+  python -m pip install -r ./requirements.txt -i https://pypi.doubanio.com/simple #-vvv
   rm -rf ./${PY_ENV}.tar.gz
   conda pack -n ${PY_ENV} -o ./${PY_ENV}.tar.gz
 }

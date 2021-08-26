@@ -1,3 +1,7 @@
 numpy==1.21.1
 multipledispatch==0.6.0
-#egg=brabeion-master
+#git+https://github.com/pallets/flask.git@bdf7083cfdeef0e0bdd0bf6d4c23b26c92b52d95
+#torch==1.9.0
+#https://ghproxy.com/https://github.com/facebookresearch/detectron2/archive/refs/tags/v0.5.tar.gz
+#https://ghproxy.com/https://github.com/facebookresearch/fastText/archive/refs/tags/v0.9.2.tar.gz#egg=fastText
+
