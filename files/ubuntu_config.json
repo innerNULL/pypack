@@ -1,0 +1,23 @@
+{
+    "miniconda_url": "https://repo.anaconda.com/miniconda/Miniconda3-py39_4.10.3-Linux-x86_64.sh",
+    "docker": {
+        "base_img": "ubuntu:20.04",
+        "build_img": "ubuntu_py39", 
+        "container": "prelocatable_container"
+    },
+    "python": {
+        "version": "3.9", 
+        "env_name": "pyenv", 
+        "dep": "./files/requirements.txt", 
+        "post_running": [
+            "python -m spacy download zh_core_web_sm -vvv"
+        ]
+    }, 
+    "build": {
+        "path": "./_build",
+        "pre_running": [
+            "cd ./_build", 
+            "git clone https://github.com/mrocklin/multipledispatch.git"
+        ]
+    }
+}

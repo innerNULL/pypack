@@ -12,7 +12,9 @@ By running `python pack.py`, you can get a locatable to anywhere python environm
 ## How to Run?
 Using demo config file and requirements.txt file located at `./files` as example, run
 ```
-python pack.py --conf_path ./files/config.json
+python pack.py --conf_path ./files/centos_config.json
+# or
+python pack.py --conf_path ./files/ubuntu_config.json
 ```
 After execution, the last line of logs will tell you where to get your python-env tar.gz file.
 
@@ -33,5 +35,3 @@ After execution, the last line of logs will tell you where to get your python-en
     * **pre_running**: The commands should be executed before docker-building stage, usually includes specific file/data movement process.
 
 
-## TODO
-* Support ubuntu platform python-env.
