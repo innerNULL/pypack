@@ -36,6 +36,7 @@ function build_py_env() {
   conda create -n ${PY_ENV} python=${PY_VERSION}
   conda init bash
   source activate ${PY_ENV}
+  python -m pip install --upgrade pip -i https://pypi.doubanio.com/simple 
   python -m pip install -r ./requirements.txt -i https://pypi.doubanio.com/simple #-vvv
 }
 

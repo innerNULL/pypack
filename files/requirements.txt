@@ -1,5 +1,6 @@
 numpy==1.21.1
-multipledispatch==0.6.0
+#multipledispatch==0.6.0
+./multipledispatch
 pytextrank==3.2.1
 #git+https://github.com/pallets/flask.git@bdf7083cfdeef0e0bdd0bf6d4c23b26c92b52d95
 #torch==1.9.0

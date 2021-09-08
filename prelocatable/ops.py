@@ -24,6 +24,8 @@ def files_relocate(conf: Config) -> None:
     os.system(cmd)
     cmd = "cp %s %s" % (conf.py_dep, conf.build_path)
     os.system(cmd)
+    cmd = conf.pre_build_cmd
+    os.system(cmd)
 
 
 def dockerfile_build(conf: Config) -> str:

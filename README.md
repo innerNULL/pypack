@@ -30,6 +30,7 @@ After execution, the last line of logs will tell you where to get your python-en
     * **post_running**: The command should be executed after `pip install`.
 * **build**:
     * **path**: The path used to build target python environment. This should be a new path.
+    * **pre_running**: The commands should be executed before docker-building stage, usually includes specific file/data movement process.
 
 
 ## TODO

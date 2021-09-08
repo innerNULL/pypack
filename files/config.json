@@ -14,6 +14,10 @@
         ]
     }, 
     "build": {
-        "path": "./_build"
+        "path": "./_build",
+        "pre_running": [
+            "cd ./_build", 
+            "git clone https://github.com/mrocklin/multipledispatch.git"
+        ]
     }
 }
