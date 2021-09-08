@@ -8,6 +8,7 @@ set -x
 #MINICONDA_URL=$2
 PY_ENV=$1
 PY_VERSION=$2
+POST_RUNNING_CMD=$3
 
 
 function install_python() {
@@ -27,46 +28,35 @@ function install_miniconda() {
   conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
   conda config --add channels defaults
   conda install -c conda-forge conda-pack
-  
-  #conda create -n ${PY_ENV} --file ./requirements.txt python=${PY_VERSION}
+}
+
+
+function build_py_env() {
+  cd  /workspace
   conda create -n ${PY_ENV} python=${PY_VERSION}
   conda init bash
-  #conda activate ${PY_ENV}
   source activate ${PY_ENV}
   python -m pip install -r ./requirements.txt -i https://pypi.doubanio.com/simple #-vvv
+}
+
+
+function post_running() {
+  cd /workspace
+  bash -c "${POST_RUNNING_CMD}"
+}
+
+
+function pack_py_env() {
   rm -rf ./${PY_ENV}.tar.gz
   conda pack -n ${PY_ENV} -o ./${PY_ENV}.tar.gz
-}
-
-
-function main_bak() {
-  install_python
-  ${PYTHON_BIN} --version
-  #cd /workspace && rm -rf ./venv && mkdir ./venv && ${PYTHON_BIN} -m venv ./venv/ --copies
-  ls -lh /workspace
-  #ls /workspace/venv
-  ${PYTHON_BIN} -m pip --upgrade pip setuptools wheel -i https://pypi.doubanio.com/simple
-  ${PYTHON_BIN} -m pip uninstall conda
-  ${PYTHON_BIN} -m pip install conda -i https://pypi.doubanio.com/simple
-  ${PYTHON_BIN} -m pip install cytoolz -i https://pypi.doubanio.com/simple
-  ${PYTHON_BIN} -m conda --version
-  ${PYTHON_BIN} -m conda config --add channels https://pypi.doubanio.com/simple
-  ${PYTHON_BIN} -m conda config --add channels https://mirrors.ustc.edu.cn/anaconda/pkgs/main/ 
-  ${PYTHON_BIN} -m conda config --add channels https://mirrors.ustc.edu.cn/anaconda/cloud/conda-forge/ 
-  ${PYTHON_BIN} -m conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
-  ${PYTHON_BIN} -m conda config --add channels defaults
-  #${PYTHON_BIN} -m conda update conda
-  #cd /workspace && ${PYTHON_BIN} -m conda install --file ./requirements.txt
-  cd /workspace && ${PYTHON_BIN} -m pip install -r ./requirements.txt -i https://pypi.doubanio.com/simple
-  cd /workspace
-  ${PYTHON_BIN} -m conda create -y -n tmp 
-  ${PYTHON_BIN} -m conda activate tmp 
-  ${PYTHON_BIN} -m conda pack -o ./environment.tar.gz
-}
+} 
 
 
 function main() {
   install_miniconda
+  build_py_env
+  post_running
+  pack_py_env
 }
 
 main

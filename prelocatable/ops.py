@@ -52,11 +52,12 @@ def py_env_build(conf: Config) -> str:
         container_name=conf.container, 
         mounting_path=conf.build_path, 
         image=conf.build_img, 
-        cmd="cd /workspace && bash init.sh && bash build.sh %s %s" \
-                % (conf.py_env, str(conf.py_version))
+        cmd="cd /workspace && bash init.sh && bash build.sh %s %s %s" \
+                % (conf.py_env, str(conf.py_version), conf.post_build_cmd)
     )
     os.system("sudo docker rm -f %s" % conf.container)
     os.system(cmd)
     os.system("sudo chmod 777 %s.tar.gz" 
             % os.path.join(conf.build_path, conf.py_env))
     return os.path.join(conf.build_path, conf.py_env)
+

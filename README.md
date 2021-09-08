@@ -27,6 +27,7 @@ After execution, the last line of logs will tell you where to get your python-en
     * **version**: Target python environment version.
     * **env_name**: Target python environment name.
     * **dep**: Target python environment's dependencies packages, which is, requirement.txt path.
+    * **post_running**: The command should be executed after `pip install`.
 * **build**:
     * **path**: The path used to build target python environment. This should be a new path.
 

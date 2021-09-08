@@ -45,6 +45,7 @@ class Config(object):
         self.conda_installer: str # Conda installer path.
         self.dockerfile: str # Generated Dockerfile path.
         self.img_init_sh: str # Image initialization shell script.
+        self.post_build_cmd: str # Commands executed after pip install.
 
     def _preprocess(self) -> None:
         self.miniconda_url = self._conf["miniconda_url"]
@@ -62,6 +63,8 @@ class Config(object):
                 self.build_path, "miniconda_installer.sh")
         self.dockerfile = os.path.join(self.build_path, "Dockerfile")
         self.img_init_sh = os.path.join(self.build_path, "init.sh")
+
+        self.post_build_cmd = '\"%s\"' % ";".join(self._conf["python"]["post_running"])
 
     def get_system(self, img_name: str) -> str:
         if "centos" in img_name:

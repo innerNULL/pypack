@@ -8,7 +8,10 @@
     "python": {
         "version": "3.9", 
         "env_name": "pyenv", 
-        "dep": "./files/requirements.txt"
+        "dep": "./files/requirements.txt", 
+        "post_running": [
+            "python -m spacy download zh_core_web_sm -vvv"
+        ]
     }, 
     "build": {
         "path": "./_build"
