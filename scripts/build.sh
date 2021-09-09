@@ -21,19 +21,20 @@ function install_python() {
 
 function install_miniconda() {
   cd  /workspace 
-  bash ./miniconda_installer.sh
+  #bash ./miniconda_installer.sh
+  bash ./miniconda_installer.sh -b
   export PATH=/root/miniconda3/bin/:$PATH
   conda config --add channels https://mirrors.ustc.edu.cn/anaconda/pkgs/main/
   conda config --add channels https://mirrors.ustc.edu.cn/anaconda/cloud/conda-forge/ 
   conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
   conda config --add channels defaults
-  conda install -c conda-forge conda-pack
+  conda install -c conda-forge conda-pack --yes
 }
 
 
 function build_py_env() {
   cd  /workspace
-  conda create -n ${PY_ENV} python=${PY_VERSION}
+  conda create -n ${PY_ENV} python=${PY_VERSION} --yes
   conda init bash
   source activate ${PY_ENV}
   python -m pip install --upgrade pip -i https://pypi.doubanio.com/simple 

@@ -16,9 +16,8 @@ function install() {
   echo "deb-src http://mirrors.aliyun.com/ubuntu/ vivid-proposed main restricted universe multiverse" >> /etc/apt/sources.list
   echo "deb-src http://mirrors.aliyun.com/ubuntu/ vivid-backports main restricted universe multiverse" >> /etc/apt/sources.list
   apt -y update
-  apt install make gcc
-  apt install zip wget git g++ -y 
-  #apt install openssl-dev libffi-dev zip wget git g++ -y
+  apt -y install make gcc
+  apt -y install zip wget git g++  
 }
 
 
