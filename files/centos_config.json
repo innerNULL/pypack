@@ -2,11 +2,11 @@
     "miniconda_url": "https://repo.anaconda.com/miniconda/Miniconda3-py39_4.10.3-Linux-x86_64.sh",
     "docker": {
         "base_img": "centos:centos7.3.1611",
-        "build_img": "centos_py39", 
+        "build_img": "centos_py", 
         "container": "prelocatable_container"
     },
     "python": {
-        "version": "3.9", 
+        "version": "3.7", 
         "env_name": "pyenv", 
         "dep": "./files/requirements.txt", 
         "post_running": [
@@ -17,7 +17,7 @@
         "path": "./_build",
         "pre_running": [
             "cd ./_build", 
-            "git clone https://github.com/mrocklin/multipledispatch.git"
+            "git clone https://ghproxy.com/https://github.com/mrocklin/multipledispatch.git"
         ]
     }
 }

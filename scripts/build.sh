@@ -28,6 +28,7 @@ function install_miniconda() {
   conda config --add channels https://mirrors.ustc.edu.cn/anaconda/cloud/conda-forge/ 
   conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
   conda config --add channels defaults
+  conda update pip --yes
   conda install -c conda-forge conda-pack --yes
 }
 
@@ -37,7 +38,9 @@ function build_py_env() {
   conda create -n ${PY_ENV} python=${PY_VERSION} --yes
   conda init bash
   source activate ${PY_ENV}
-  python -m pip install --upgrade pip -i https://pypi.doubanio.com/simple 
+  # Not using this `python -m pip install --upgrade pip` 
+  # since miniconda bug!
+  #python -m pip install --upgrade pip -i https://pypi.doubanio.com/simple 
   python -m pip install -r ./requirements.txt -i https://pypi.doubanio.com/simple #-vvv
 }
 
