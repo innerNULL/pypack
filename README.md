@@ -18,6 +18,13 @@ python pack.py --conf_path ./files/ubuntu_config.json
 ```
 After execution, the last line of logs will tell you where to get your python-env tar.gz file.
 
+If you do not want `git clone` the responsitory, you can just run 
+```bash
+curl -s https://raw.githubusercontent.com/innerNULL/pylocatable/main/pylocatable.sh | bash /dev/stdin path/to/config.json
+# or (in China Mainland)
+curl -s https://ghproxy.com/https://raw.githubusercontent.com/innerNULL/pylocatable/main/pylocatable.sh | bash /dev/stdin path/to/config.json
+```
+
 
 ## Config File
 * **miniconda_url**: miniconda url used to download miniconda installer.
