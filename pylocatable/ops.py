@@ -3,6 +3,9 @@
 
 
 import os
+import sys
+CURR_PATH: str = os.path.dirname(__file__)
+
 import _io
 from . import Config
 from . import utils
@@ -16,11 +19,14 @@ def predownload(conf: Config) -> str:
 
 def files_relocate(conf: Config) -> None:
     cmd: str
+    scripts_path: str = os.path.join(CURR_PATH, "../scripts")
     cmd = "cp %s %s" % (
-        "./scripts/%s_init.sh" % conf.system, conf.img_init_sh)
+            os.path.join(scripts_path, "%s_init.sh" % conf.system), 
+            conf.img_init_sh)
     os.system(cmd)
 
-    cmd = "cp %s %s" % ("./scripts/build.sh", conf.build_path)
+    cmd = "cp %s %s" % (
+            os.path.join(scripts_path, "build.sh"), conf.build_path)
     os.system(cmd)
     cmd = "cp %s %s" % (conf.py_dep, conf.build_path)
     os.system(cmd)

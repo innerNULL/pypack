@@ -5,10 +5,10 @@
 import argparse
 from typing import Dict, List, Union
 
-import prelocatable as ploc
-import prelocatable.ops as ops
-import prelocatable.utils as utils
-import prelocatable.templates as templates
+import pylocatable as ploc
+import pylocatable.ops as ops
+import pylocatable.utils as utils
+import pylocatable.templates as templates
 
 
 argparser = argparse.ArgumentParser()

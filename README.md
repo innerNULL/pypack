@@ -1,5 +1,5 @@
-# prelocatable
-makes Python environment RELOCATABLE.  
+# pylocatable
+makes PYthon environment reLOCATABLE.  
 By running `python pack.py`, you can get a locatable to anywhere python environment tar.gz file. You can control which kind python environment you want by customize your config file.
 
 
