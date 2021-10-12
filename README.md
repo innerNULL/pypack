@@ -7,6 +7,7 @@ By running `python pack.py`, you can get a locatable to anywhere python environm
 * Needs a customized python environment running pyspark job on yarn cluster.
 * Needs a specific python environment on a server without a `sudo` account.
 * Build a unify python environment both on offline and online environment.
+* Build a pre-built python runtime to avoid packaging process when launching a python program.
 
 
 ## How to Run?
@@ -42,3 +43,5 @@ curl -s https://ghproxy.com/https://raw.githubusercontent.com/innerNULL/pylocata
     * **pre_running**: The commands should be executed before docker-building stage, usually includes specific file/data movement process.
 
 
+## Tips
+* Make sure your computer/server has enough resource (such as disk-space), since if not, conda/pip will raise hard-understanding error info.
