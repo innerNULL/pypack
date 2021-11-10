@@ -1,18 +1,21 @@
 # pylocatable
 makes PYthon environment reLOCATABLE.  
-By running `python pack.py`, you can get a locatable to anywhere python environment tar.gz file. You can control which kind python environment you want by customize your config file.
+  
+By running `pack.py` or `pylocatable.sh`, you can get a locatable to anywhere python environment tar.gz file. You can control which kind python environment you want by customize your config file.  
+    
+BTW, don't worry this will mess your current directory up, since all files and all operations will be handled or executed under `build.path` defined by config file.
 
 
 ## Using Scenarios
-* Needs a customized python environment running pyspark job on yarn cluster.
-* Needs a specific python environment on a server without a `sudo` account.
-* Build a unify python environment both on offline and online environment.
-* Build a pre-built python runtime to avoid packaging process when launching a python program.
+* Needs a customized python runtime for pyspark job on yarn cluster.
+* Needs a specific python runtime on a server without a `sudo` account.
+* Builds an unified python runtime both for offline/online/ environment, one-time's packaging, multi-scenarios' using.
+* Builds a pre-built python runtime to avoid packaging process when launching a python program.
 
 
 ## How to Run?
 Using demo config file and requirements.txt file located at `./files` as example, run
-```
+```bash
 python pack.py --conf_path ./files/centos_config.json
 # or
 python pack.py --conf_path ./files/ubuntu_config.json
@@ -36,10 +39,10 @@ curl -s https://ghproxy.com/https://raw.githubusercontent.com/innerNULL/pylocata
 * **python**:
     * **version**: Target python environment version.
     * **env_name**: Target python environment name.
-    * **dep**: Target python environment's dependencies packages, which is, requirement.txt path.
+    * **dep**: Target python environment's dependencies packages, which is, `requirement.txt` path. Note, no matter you use `pack.py` or `pylocatable.sh`, this path should be an absolute path or **a relative path refer to your current path (the path you execute packaging command)**.
     * **post_running**: The command should be executed after `pip install`.
 * **build**:
-    * **path**: The path used to build target python environment. This should be a new path.
+    * **path**: The directroy under which to execute building target python environment. This should be a new path.
     * **pre_running**: The commands should be executed before docker-building stage, usually includes specific file/data movement process.
 
 
