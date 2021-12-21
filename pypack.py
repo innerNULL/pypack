@@ -5,10 +5,10 @@
 import argparse
 from typing import Dict, List, Union
 
-import pylocatable as ploc
-import pylocatable.ops as ops
-import pylocatable.utils as utils
-import pylocatable.templates as templates
+import pypack as pypack
+import pypack.ops as ops
+import pypack.utils as utils
+import pypack.templates as templates
 
 
 argparser = argparse.ArgumentParser()
@@ -22,7 +22,7 @@ if __name__ == "__main__":
     print("Starting python-env packing process...")
     conf_path: str = args.conf_path
     
-    config: ploc.Config = ploc.Config(conf_path)
+    config: pypack.Config = pypack.Config(conf_path)
     ops.predownload(config)
     ops.files_relocate(config)
     ops.dockerfile_build(config)

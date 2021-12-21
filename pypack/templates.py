@@ -4,7 +4,7 @@
 
 DOCKERFILE_TEMP: str = """
 FROM {img} 
-MAINTAINER "pylocatable@github"
+MAINTAINER "pypack@github"
 
 RUN mkdir /workspace
 WORKDIR /workspace
