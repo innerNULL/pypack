@@ -11,14 +11,24 @@ BTW, don't worry this will mess your current directory up, since all files and a
 * Needs a specific python runtime on a server without a `sudo` account.
 * Builds an unified python runtime both for offline/online/ environment, one-time's packaging, multi-scenarios' using.
 * Builds a pre-built python runtime to avoid packaging process when launching a python program.
+* Avoid some weird issues/bugs when using `python -m venv`, for example, try: 
+```
+python3 -venv ./pyenv --copies
+source ./pyenv/bin/activate   
+pip install gdown
+```
 
+## Requirements
+* unix-like system
+* docker with sudo authority  
+* python with version higher than 3.0  
 
 ## How to Run?
-Using demo config file and requirements.txt file located at `./files` as example, run
+Using demo config file and requirements.txt file located at `./demo_conf` as example, run
 ```bash
-python pypack.py --conf_path ./files/centos_config.json
+python pypack.py --conf_path ./demo_conf/pypack_centos.json
 # or
-python pypack.py --conf_path ./files/ubuntu_config.json
+python pypack.py --conf_path ./demo_conf/pypack_ubuntu.json
 ```
 After execution, the last line of logs will tell you where to get your python-env tar.gz file.
 
@@ -26,8 +36,11 @@ If you do not want `git clone` the responsitory, you can just run
 ```bash
 curl -s https://raw.githubusercontent.com/innerNULL/pypack/main/pypack.sh | bash /dev/stdin path/to/config.json
 # or (in China Mainland)
-curl -s https://ghproxy.com/https://raw.githubusercontent.com/innerNULL/pypack/main/pypack.sh | bash /dev/stdin path/to/config.json
+wget -qO - https://ghproxy.com/https://raw.githubusercontent.com/innerNULL/pypack/main/pypack.sh | bash /dev/stdin path/to/config.json
 ```
+
+## Define Project Python-Env Building Process with Makefile
+Refer to `./example`, just run `make`.
 
 
 ## Config File
@@ -44,6 +57,13 @@ curl -s https://ghproxy.com/https://raw.githubusercontent.com/innerNULL/pypack/m
 * **build**:
     * **path**: The directroy under which to execute building target python environment. This should be a new path.
     * **pre_running**: The commands should be executed before docker-building stage, usually includes specific file/data movement process.
+
+## Pre/Post Running Mechanism
+In pypack config, there is a post-running mechanism after python modules have been installed, and a pre-running mechanism before python runtime packaging process. Using
+[pypack_ubuntu.json](https://github.com/innerNULL/pypack/blob/main/demo_conf/pypack_ubuntu.json) and [requirements.txt](https://github.com/innerNULL/pypack/blob/main/demo_conf/requirements.txt) as
+exmaple:  
+* **post_running**: Since after we packaging python-env which contains spacy, we also hope download spacy-zh-dependencies before packaging python-env to tar.gz, but this should be executed with python-cmd, so we can just add shell command lines in `post_running`.   
+* **pre_running**: Similiar with `post_running`, but this is used to do some preparation before all python-packaging process, for example, here we clone the ultipledispatch into `build.path`, so in requirements.txt we can install this module from local directory.
 
 
 ## Tips

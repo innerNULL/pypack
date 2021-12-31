@@ -1,12 +1,12 @@
 {
     "miniconda_url": "https://repo.anaconda.com/miniconda/Miniconda3-py39_4.10.3-Linux-x86_64.sh",
     "docker": {
-        "base_img": "ubuntu:20.04",
-        "build_img": "ubuntu_py", 
+        "base_img": "centos:centos7.3.1611",
+        "build_img": "pypack_centos:centos7.3.1611", 
         "container": "pypack_container"
     },
     "python": {
-        "version": "3.9", 
+        "version": "3.7", 
         "env_name": "pyenv", 
         "dep": "./files/requirements.txt", 
         "post_running": [

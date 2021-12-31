@@ -12,8 +12,11 @@ from . import utils
 
 def path_preparation(path: str) -> str:
     path: str = os.path.abspath(path)
-    if not os.path.exists(path):
-        os.makedirs(path)
+    if os.path.exists(path):
+        raise Exception(
+            "Pypack's py-runtime building path already exists, "
+            "delete it or change to another one.")
+    os.makedirs(path)
     return path
 
 
