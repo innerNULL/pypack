@@ -13,7 +13,7 @@ _WORK_DIR="./_pypack"
 
 function get_pypack() {
   mkdir -p ${_WORK_DIR}
-  cd ${_WORK_DIR} && git clone git@github.com:innerNULL/pypack.git
+  cd ${_WORK_DIR} && git clone https://github.com/innerNULL/pypack.git
 }
 
 function main() {
