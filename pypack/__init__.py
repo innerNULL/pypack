@@ -35,6 +35,7 @@ class Config(object):
         self._conf: Dict
 
         self.miniconda_url: str
+        self.use_sudo: str
         self.base_img: str
         self.build_img: str 
         self.container: str 
@@ -53,9 +54,12 @@ class Config(object):
 
     def _preprocess(self) -> None:
         self.miniconda_url = self._conf["miniconda_url"]
+        self.use_sudo = self._conf["use_sudo"]
+
         self.base_img = self._conf["docker"]["base_img"]
         self.build_img = self._conf["docker"]["build_img"]
         self.container = self._conf["docker"]["container"]
+
         self.py_version = self._conf["python"]["version"]
         self.py_env = self._conf["python"]["env_name"]
         self.py_dep = os.path.abspath(self._conf["python"]["dep"])

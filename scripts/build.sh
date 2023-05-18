@@ -54,6 +54,9 @@ function post_running() {
 function pack_py_env() {
   rm -rf ./${PY_ENV}.tar.gz
   bash -c "conda pack -n ${PY_ENV} -o ./${PY_ENV}.tar.gz"
+  bash -c "chmod 777 ./${PY_ENV}.tar.gz"
+  find . ! -name '*.tar.gz' -type f -exec rm -rf {} +
+  find . ! -name '*.tar.gz' -type d -exec rm -rf {} +
 } 
 
 

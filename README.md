@@ -45,6 +45,7 @@ Refer to `./example`, just run `make`.
 
 ## Config File
 * **miniconda_url**: miniconda url used to download miniconda installer.
+* **use_sudo**: If using `sudo` to run docker or some other operations on local, in model case you should set this to "0", which means not use.
 * **docker**:
     * **base_img**: Base image (and its tag) used to package python-building image.
     * **build_img**: The name of the images build on `base_img` for python environment building.

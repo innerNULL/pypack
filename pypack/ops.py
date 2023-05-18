@@ -63,9 +63,14 @@ def py_env_build(conf: Config) -> str:
         cmd="cd /workspace && bash init.sh && bash build.sh %s %s %s" \
                 % (conf.py_env, str(conf.py_version), conf.post_build_cmd)
     )
-    os.system("sudo docker rm -f %s" % conf.container)
+    docker_img_rm_cmd: str = "sudo docker rm -f %s" % conf.container
+    
+    if conf.use_sudo != "1":
+        cmd = cmd.replace("sudo ", "")
+        docker_img_rm_cmd = docker_img_rm_cmd.replace("sudo ", "")
+    
+    os.system(docker_img_rm_cmd)
     os.system(cmd)
-    os.system("sudo chmod 777 %s.tar.gz" 
-            % os.path.join(conf.build_path, conf.py_env))
+
     return os.path.join(conf.build_path, conf.py_env)
 
